@@ -5,6 +5,7 @@
   "author": "drsherlock",
   "license": "MIT",
   "private": false,
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon index.js"
