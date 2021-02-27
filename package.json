@@ -1,0 +1,16 @@
+{
+  "name": "mercury",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "drsherlock",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
+}
