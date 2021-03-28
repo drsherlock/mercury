@@ -1,7 +1,7 @@
 import express from 'express';
 import request from 'request';
 
-const { default: config } = await import(process.env.CONFIG);
+const { default: config } = await import('../' + process.env.CONFIG);
 
 const port = config.PORT || 8080;
 
