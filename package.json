@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "start": "node --experimental-json-modules ./src/index.js",
-    "start:dev": "nodemon --experimental-json-modules ./src/index.js"
+    "start:dev": "nodemon --experimental-json-modules --experimental-specifier-resolution=node ./src/index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
