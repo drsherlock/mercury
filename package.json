@@ -8,10 +8,16 @@
   "type": "module",
   "scripts": {
     "start": "node --experimental-json-modules ./src/index.js",
-    "start:dev": "nodemon --experimental-json-modules --experimental-specifier-resolution=node ./src/index.js"
+    "start:dev": "nodemon --experimental-json-modules --experimental-specifier-resolution=node ./src/index.js",
+    "lint": "eslint --fix .",
+    "pretty": "prettier --write ."
   },
   "dependencies": {
     "express": "^4.17.1",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "prettier": "^2.2.1"
   }
 }

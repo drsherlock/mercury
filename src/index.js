@@ -1,8 +1,8 @@
-import express from 'express';
+import express from "express";
 
-import getConfiguredHandler from './strategy';
+import getConfiguredHandler from "./strategy";
 
-const { default: config } = await import('../' + process.env.CONFIG);
+const { default: config } = await import("../" + process.env.CONFIG);
 
 const port = config.PORT || 8080;
 
@@ -16,9 +16,9 @@ const handler = (req, res) => {
 };
 
 const server = express()
-                .get('*', handler)
-                .post('*', handler)
-                .put('*', handler)
-                .delete('*', handler);
+  .get("*", handler)
+  .post("*", handler)
+  .put("*", handler)
+  .delete("*", handler);
 
 server.listen(port, () => console.log(`Mercury running at port ${port}`));
