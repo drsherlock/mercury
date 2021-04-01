@@ -1,8 +1,10 @@
 import request from "request";
 
-class RoundRobinStrategy {
+import Strategy from "../Strategy";
+
+class RoundRobinStrategy extends Strategy {
 	constructor(servers) {
-		this.servers = servers;
+		super(servers);
 
 		this.currentRequestNumber = 0;
 	}

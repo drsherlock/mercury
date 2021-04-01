@@ -1,8 +1,10 @@
 import request from "request";
 
-class RandomStrategy {
+import Strategy from "../Strategy";
+
+class RandomStrategy extends Strategy {
 	constructor(servers) {
-		this.servers = servers;
+		super(servers);
 	}
 
 	async handleRequest(req, res) {

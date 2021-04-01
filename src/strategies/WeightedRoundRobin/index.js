@@ -1,8 +1,10 @@
 import request from "request";
 
-class WeightedRoundRobinStrategy {
+import Strategy from "../Strategy";
+
+class WeightedRoundRobinStrategy extends Strategy {
 	constructor(servers) {
-		this.servers = servers;
+		super(servers);
 
 		this.currentServer = 0;
 

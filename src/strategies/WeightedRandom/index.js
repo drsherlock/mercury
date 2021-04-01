@@ -1,8 +1,10 @@
 import request from "request";
 
-class WeightedRandomStrategy {
+import Strategy from "../Strategy";
+
+class WeightedRandomStrategy extends Strategy {
 	constructor(servers) {
-		this.servers = servers;
+		super(servers);
 
 		let serverNumber = 0;
 		this.serverWeights = servers.reduce((a, s) => {

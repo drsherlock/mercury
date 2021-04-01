@@ -1,6 +1,6 @@
 import express from "express";
 
-import getConfiguredHandler from "./strategy";
+import getConfiguredHandler from "./strategies";
 
 const { default: config } = await import(`../${process.env.CONFIG}`);
 
