@@ -2,6 +2,7 @@ import RandomStrategy from "./Random";
 import RoundRobinStrategy from "./RoundRobin";
 import WeightedRandomStrategy from "./WeightedRandom";
 import WeightedRoundRobinStrategy from "./WeightedRoundRobin";
+import LeastConnectionsStrategy from "./LeastConnections";
 
 const getConfiguredHandler = (strategy, servers) => {
 	switch (strategy) {
@@ -14,6 +15,7 @@ const getConfiguredHandler = (strategy, servers) => {
 		case "WEIGHTED_RANDOM":
 			return new WeightedRandomStrategy(servers);
 		case "LEAST_CONNECTIONS":
+			return new LeastConnectionsStrategy(servers);
 		default:
 			return new RandomStrategy(servers);
 	}
