@@ -1,6 +1,5 @@
-import request from "request";
-
 import Strategy from "../Strategy";
+import request from "../../client";
 
 class WeightedRandomStrategy extends Strategy {
 	constructor(servers) {
@@ -23,7 +22,9 @@ class WeightedRandomStrategy extends Strategy {
 		const randomServer = this.weightedRandom();
 		const serverUrl = this.servers[randomServer].URL;
 
-		await req.pipe(request({ url: serverUrl + req.url })).pipe(res);
+		await request(req, res, {
+			url: serverUrl + req.url
+		});
 	}
 
 	weightedRandom() {

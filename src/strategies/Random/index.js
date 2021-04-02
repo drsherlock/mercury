@@ -1,6 +1,5 @@
-import request from "request";
-
 import Strategy from "../Strategy";
+import request from "../../client";
 
 class RandomStrategy extends Strategy {
 	constructor(servers) {
@@ -12,7 +11,9 @@ class RandomStrategy extends Strategy {
 		const randomServer = Math.floor(Math.random() * numOfServers);
 		const serverUrl = this.servers[randomServer].URL;
 
-		await req.pipe(request({ url: serverUrl + req.url })).pipe(res);
+		await request(req, res, {
+			url: serverUrl + req.url
+		});
 	}
 }
 

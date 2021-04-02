@@ -1,8 +1,8 @@
-import request from "request";
-
 import Strategy from "../Strategy";
+import request from "../../client";
 
 class WeightedRoundRobinStrategy extends Strategy {
+	// TODO: try to improve algorithm
 	constructor(servers) {
 		super(servers);
 
@@ -33,7 +33,9 @@ class WeightedRoundRobinStrategy extends Strategy {
 
 		const serverUrl = this.servers[this.currentServer].URL;
 
-		await req.pipe(request({ url: serverUrl + req.url })).pipe(res);
+		await request(req, res, {
+			url: serverUrl + req.url
+		});
 
 		this.requestQueue[this.currentServer].WEIGHT--;
 	}

@@ -1,6 +1,5 @@
-import request from "request";
-
 import Strategy from "../Strategy";
+import request from "../../client";
 
 class RoundRobinStrategy extends Strategy {
 	constructor(servers) {
@@ -12,7 +11,9 @@ class RoundRobinStrategy extends Strategy {
 	async handleRequest(req, res) {
 		const serverUrl = this.servers[this.currentRequestNumber].URL;
 
-		await req.pipe(request({ url: serverUrl + req.url })).pipe(res);
+		await request(req, res, {
+			url: serverUrl + req.url
+		});
 
 		this.currentRequestNumber =
 			(this.currentRequestNumber + 1) % this.servers.length;

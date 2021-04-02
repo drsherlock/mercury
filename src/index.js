@@ -11,8 +11,8 @@ const strategy = config.STRATEGY;
 
 const configuredHandler = getConfiguredHandler(strategy, servers);
 
-const handler = (req, res) => {
-	return configuredHandler.handleRequest(req, res);
+const handler = async (req, res) => {
+	await configuredHandler.handleRequest(req, res);
 };
 
 const server = express()
