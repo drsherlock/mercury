@@ -30,3 +30,9 @@ Example config.json file -
   "PROFILER": false
 }
 ```
+
+### TODO -
+
+- SSL termination
+- Logging
+- Weighted Least Connection strategy
