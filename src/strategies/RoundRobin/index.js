@@ -8,12 +8,16 @@ class RoundRobinStrategy extends Strategy {
 		this.currentRequestNumber = 0;
 	}
 
-	async handleRequest(req, res) {
+	async handleRequest(req, res, next) {
 		const serverUrl = this.servers[this.currentRequestNumber].URL;
 
-		await request(req, res, {
-			url: serverUrl + req.url
-		});
+		try {
+			await request(req, res, {
+				url: serverUrl + req.url
+			});
+		} catch (err) {
+			next(err);
+		}
 
 		this.currentRequestNumber =
 			(this.currentRequestNumber + 1) % this.servers.length;

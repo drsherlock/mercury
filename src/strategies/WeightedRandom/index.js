@@ -18,13 +18,17 @@ class WeightedRandomStrategy extends Strategy {
 		}, 0);
 	}
 
-	async handleRequest(req, res) {
+	async handleRequest(req, res, next) {
 		const randomServer = this.weightedRandom();
 		const serverUrl = this.servers[randomServer].URL;
 
-		await request(req, res, {
-			url: serverUrl + req.url
-		});
+		try {
+			await request(req, res, {
+				url: serverUrl + req.url
+			});
+		} catch (err) {
+			next(err);
+		}
 	}
 
 	weightedRandom() {

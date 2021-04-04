@@ -1,6 +1,6 @@
 import express from "express";
 
-import { profilerMiddleware } from "./middlewares";
+import { profilerMiddleware, errorHandlerMiddleware } from "./middlewares";
 import getConfiguredHandler from "./strategies";
 
 const { default: config } = await import(`../${process.env.CONFIG}`);
@@ -12,8 +12,8 @@ const strategy = config.STRATEGY;
 
 const configuredHandler = getConfiguredHandler(strategy, servers);
 
-const handler = async (req, res) => {
-	await configuredHandler.handleRequest(req, res);
+const handler = async (req, res, next) => {
+	await configuredHandler.handleRequest(req, res, next);
 };
 
 const server = express();
@@ -27,5 +27,7 @@ server
 	.post("*", handler)
 	.put("*", handler)
 	.delete("*", handler);
+
+server.use(errorHandlerMiddleware);
 
 server.listen(port, () => console.log(`Mercury running at port ${port}`));

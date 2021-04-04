@@ -13,7 +13,7 @@ class WeightedRoundRobinStrategy extends Strategy {
 			.map((s) => ({ ...s }));
 	}
 
-	async handleRequest(req, res) {
+	async handleRequest(req, res, next) {
 		if (
 			this.currentServer < this.servers.length - 1 &&
 			this.requestQueue[this.currentServer].WEIGHT >=
@@ -33,9 +33,13 @@ class WeightedRoundRobinStrategy extends Strategy {
 
 		const serverUrl = this.servers[this.currentServer].URL;
 
-		await request(req, res, {
-			url: serverUrl + req.url
-		});
+		try {
+			await request(req, res, {
+				url: serverUrl + req.url
+			});
+		} catch (err) {
+			next(err);
+		}
 
 		this.requestQueue[this.currentServer].WEIGHT--;
 	}

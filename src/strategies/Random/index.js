@@ -6,14 +6,18 @@ class RandomStrategy extends Strategy {
 		super(servers);
 	}
 
-	async handleRequest(req, res) {
+	async handleRequest(req, res, next) {
 		const numOfServers = this.servers.length;
 		const randomServer = Math.floor(Math.random() * numOfServers);
 		const serverUrl = this.servers[randomServer].URL;
 
-		await request(req, res, {
-			url: serverUrl + req.url
-		});
+		try {
+			await request(req, res, {
+				url: serverUrl + req.url
+			});
+		} catch (err) {
+			next(err);
+		}
 	}
 }
 
