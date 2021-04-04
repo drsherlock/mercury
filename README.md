@@ -15,11 +15,18 @@ Example config.json file -
   "STRATEGY": "RANDOM",
   "SERVERS": [
     {
-      "URL": "http://localhost:3000"
+      "URL": "http://localhost:3000",
+      "WEIGHT": 1
     },
     {
-      "URL": "http://localhost:3001"
+      "URL": "http://localhost:3001",
+      "WEIGHT": 5
+    },
+    {
+      "URL": "http://localhost:3002",
+      "WEIGHT": 5
     }
-  ]
+  ],
+  "PROFILER": false
 }
 ```

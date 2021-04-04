@@ -1,5 +1,6 @@
 import express from "express";
 
+import { profilerMiddleware } from "./middlewares";
 import getConfiguredHandler from "./strategies";
 
 const { default: config } = await import(`../${process.env.CONFIG}`);
@@ -15,7 +16,13 @@ const handler = async (req, res) => {
 	await configuredHandler.handleRequest(req, res);
 };
 
-const server = express()
+const server = express();
+
+if (config.PROFILER) {
+	server.use(profilerMiddleware);
+}
+
+server
 	.get("*", handler)
 	.post("*", handler)
 	.put("*", handler)
