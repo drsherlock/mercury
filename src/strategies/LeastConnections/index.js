@@ -9,7 +9,7 @@ class LeastConnectionsStrategy extends Strategy {
 		this.serversWithConnCount = servers.map((s) => ({ connCount: 0, ...s }));
 	}
 
-	async handleRequest(req, res, next) {
+	handleRequest = async (req, res, next) => {
 		let leastConnCountServer = this.serversWithConnCount[0];
 
 		for (let server of this.serversWithConnCount) {
@@ -32,7 +32,7 @@ class LeastConnectionsStrategy extends Strategy {
 		}
 
 		leastConnCountServer.connCount--;
-	}
+	};
 }
 
 export default LeastConnectionsStrategy;

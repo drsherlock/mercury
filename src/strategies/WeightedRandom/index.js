@@ -18,7 +18,7 @@ class WeightedRandomStrategy extends Strategy {
 		}, 0);
 	}
 
-	async handleRequest(req, res, next) {
+	handleRequest = async (req, res, next) => {
 		const randomServer = this.weightedRandom();
 		const serverUrl = this.servers[randomServer].URL;
 
@@ -29,7 +29,7 @@ class WeightedRandomStrategy extends Strategy {
 		} catch (err) {
 			next(err);
 		}
-	}
+	};
 
 	weightedRandom() {
 		let sum = 0;

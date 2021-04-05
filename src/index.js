@@ -12,10 +12,6 @@ const strategy = config.STRATEGY;
 
 const configuredHandler = getConfiguredHandler(strategy, servers);
 
-const handler = async (req, res, next) => {
-	await configuredHandler.handleRequest(req, res, next);
-};
-
 const server = express();
 
 if (config.PROFILER) {
@@ -23,10 +19,10 @@ if (config.PROFILER) {
 }
 
 server
-	.get("*", handler)
-	.post("*", handler)
-	.put("*", handler)
-	.delete("*", handler);
+	.get("*", configuredHandler.handleRequest)
+	.post("*", configuredHandler.handleRequest)
+	.put("*", configuredHandler.handleRequest)
+	.delete("*", configuredHandler.handleRequest);
 
 server.use(errorHandlerMiddleware);
 
