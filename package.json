@@ -17,6 +17,7 @@
 		"express": "^4.17.1"
 	},
 	"devDependencies": {
+		"babel-eslint": "^10.1.0",
 		"eslint": "^7.23.0",
 		"prettier": "^2.2.1"
 	}
