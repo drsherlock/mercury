@@ -1,5 +1,5 @@
 import Strategy from "../Strategy";
-import request from "../../client";
+import { forwardRequest } from "../../client";
 
 class WeightedRoundRobinStrategy extends Strategy {
 	// TODO: try to improve algorithm
@@ -34,7 +34,7 @@ class WeightedRoundRobinStrategy extends Strategy {
 		const serverUrl = this.servers[this.currentServer].URL;
 
 		try {
-			await request(req, res, {
+			await forwardRequest(req, res, {
 				url: serverUrl + req.url
 			});
 		} catch (err) {

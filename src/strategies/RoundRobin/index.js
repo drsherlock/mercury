@@ -1,5 +1,5 @@
 import Strategy from "../Strategy";
-import request from "../../client";
+import { forwardRequest } from "../../client";
 
 class RoundRobinStrategy extends Strategy {
 	constructor(servers) {
@@ -12,7 +12,7 @@ class RoundRobinStrategy extends Strategy {
 		const serverUrl = this.servers[this.currentRequestNumber].URL;
 
 		try {
-			await request(req, res, {
+			await forwardRequest(req, res, {
 				url: serverUrl + req.url
 			});
 		} catch (err) {

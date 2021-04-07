@@ -1,5 +1,5 @@
 import Strategy from "../Strategy";
-import request from "../../client";
+import { forwardRequest } from "../../client";
 
 class RandomStrategy extends Strategy {
 	constructor(servers) {
@@ -12,7 +12,7 @@ class RandomStrategy extends Strategy {
 		const serverUrl = this.servers[randomServer].URL;
 
 		try {
-			await request(req, res, {
+			await forwardRequest(req, res, {
 				url: serverUrl + req.url
 			});
 		} catch (err) {

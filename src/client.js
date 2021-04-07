@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const request = async (req, res, requestOptions) => {
+const forwardRequest = async (req, res, requestOptions) => {
 	const targetResponse = await axios({
 		responseType: "stream",
 		...requestOptions
@@ -8,4 +8,12 @@ const request = async (req, res, requestOptions) => {
 	targetResponse.data.pipe(res);
 };
 
-export default request;
+const createRequest = async (url, method) => {
+	const response = await axios({
+		method: method,
+		url: url
+	});
+	return response;
+};
+
+export { forwardRequest, createRequest };
