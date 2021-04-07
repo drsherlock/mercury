@@ -16,15 +16,21 @@ Example config.json file -
   "SERVERS": [
     {
       "URL": "http://localhost:3000",
-      "WEIGHT": 1
+      "WEIGHT": 1,
+      "FAILURE_TIMEOUT": 20,
+      "MAX_FAILURES": 3
     },
     {
       "URL": "http://localhost:3001",
-      "WEIGHT": 5
+      "WEIGHT": 5,
+      "FAILURE_TIMEOUT": 20,
+      "MAX_FAILURES": 3
     },
     {
       "URL": "http://localhost:3002",
-      "WEIGHT": 5
+      "WEIGHT": 5,
+      "FAILURE_TIMEOUT": 10,
+      "MAX_FAILURES": 3
     }
   ],
   "PROFILER": false
@@ -33,6 +39,10 @@ Example config.json file -
 
 ### TODO -
 
+- Write tests
+- Koa?
 - SSL termination
 - Logging
 - Weighted Least Connection strategy
+- Hash/IP based strategy
+- Typescript?
