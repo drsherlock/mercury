@@ -7,11 +7,11 @@
 	"private": false,
 	"type": "module",
 	"scripts": {
-		"start": "node --experimental-json-modules ./src/index.js",
+		"start": "node --experimental-json-modules --experimental-specifier-resolution=node ./src/index.js",
 		"start:dev": "nodemon --experimental-json-modules --experimental-specifier-resolution=node ./src/index.js",
-		"test": "jest --experimental-vm-modules",
-		"test:dev": "jest --watch",
-		"test:coverage": "jest --coverage",
+		"test": "node --experimental-vm-modules node_modules/.bin/jest",
+		"test:dev": "node --experimental-vm-modules node_modules/.bin/jest --watch",
+		"test:coverage": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
 		"lint": "eslint --fix .",
 		"pretty": "prettier --write ."
 	},
