@@ -9,9 +9,9 @@
 	"scripts": {
 		"start": "node --experimental-json-modules ./src/index.js",
 		"start:dev": "nodemon --experimental-json-modules --experimental-specifier-resolution=node ./src/index.js",
-		"test": "jest",
-	    "test:dev": "jest --watch",
-	    "test:coverage": "jest --coverage",
+		"test": "jest --experimental-vm-modules",
+		"test:dev": "jest --watch",
+		"test:coverage": "jest --coverage",
 		"lint": "eslint --fix .",
 		"pretty": "prettier --write ."
 	},

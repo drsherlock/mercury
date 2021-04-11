@@ -1,5 +1,5 @@
 import Route from "../Route";
-import { createRequest } from "../client";
+import client from "../client";
 
 export class ServerFailureHandlerMiddleware {
 	constructor(servers) {
@@ -61,7 +61,7 @@ export class ServerFailureHandlerMiddleware {
 	checkStatus = async (serverUrl, retryCount = 0, lastError = null) => {
 		if (retryCount > 5) return;
 		try {
-			return await createRequest(`${serverUrl}/health`, "GET");
+			return await client.createRequest(`${serverUrl}/health`, "GET");
 		} catch (e) {
 			await this.delay(retryCount);
 			return this.checkStatus(serverUrl, retryCount + 1, e);

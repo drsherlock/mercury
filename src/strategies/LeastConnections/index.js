@@ -1,5 +1,5 @@
 import Strategy from "../Strategy";
-import { forwardRequest } from "../../client";
+import client from "../../client";
 
 class LeastConnectionsStrategy extends Strategy {
 	// TODO: use a min-heap?
@@ -24,7 +24,7 @@ class LeastConnectionsStrategy extends Strategy {
 		const serverUrl = leastConnCountServer.URL;
 
 		try {
-			await forwardRequest(req, res, {
+			await client.forwardRequest(req, res, {
 				url: serverUrl + req.url
 			});
 		} catch (err) {

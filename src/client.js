@@ -10,10 +10,10 @@ const forwardRequest = async (req, res, requestOptions) => {
 
 const createRequest = async (url, method) => {
 	const response = await axios({
-		method: method,
-		url: url
+		url: url,
+		method: method
 	});
 	return response;
 };
 
-export { forwardRequest, createRequest };
+export default { forwardRequest, createRequest };
