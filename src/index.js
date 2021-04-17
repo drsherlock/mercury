@@ -1,7 +1,9 @@
 import express from "express";
+import morgan from "morgan";
+
+import logger from "./logger";
 
 import {
-	profilerMiddleware,
 	errorHandlerMiddleware,
 	ServerFailureHandlerMiddleware
 } from "./middlewares";
@@ -16,15 +18,21 @@ const strategy = config.STRATEGY;
 
 const server = express();
 
+server.use(
+	morgan(
+		':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time ms',
+		{
+			stream: logger.stream,
+			skip: (req, res) => process.env.NODE_ENV === "test"
+		}
+	)
+);
+
 Route.initHandler(strategy, servers);
 
 server.use((req, res, next) => {
 	Route.router(req, res, next);
 });
-
-if (config.PROFILER) {
-	server.use(profilerMiddleware);
-}
 
 const serverFailureHandlerMiddleware = new ServerFailureHandlerMiddleware(
 	servers
@@ -32,4 +40,4 @@ const serverFailureHandlerMiddleware = new ServerFailureHandlerMiddleware(
 server.use(serverFailureHandlerMiddleware.handleRequest);
 server.use(errorHandlerMiddleware);
 
-server.listen(port, () => console.log(`Mercury running at port ${port}`));
+server.listen(port, () => logger.info(`Mercury running at port ${port}`));

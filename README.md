@@ -32,8 +32,7 @@ Example config.json file -
       "FAILURE_TIMEOUT": 10,
       "MAX_FAILURES": 3
     }
-  ],
-  "PROFILER": false
+  ]
 }
 ```
 
