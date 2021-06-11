@@ -62,7 +62,7 @@ Example -
 - Docker
 
 ## Contributing
-You can contribute to code of the website by forking it and sending me a pull request after making changes or you can suggest features, report bugs here on github
+You can contribute to code of the website by forking it and sending me a pull request after making changes or you can suggest features, report bugs here on github.
 
 ## LICENSE
 Licensed under [MIT](https://github.com/drsherlock/mercury/blob/main/LICENSE).
